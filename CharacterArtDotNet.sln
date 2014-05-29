@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CharacterArtDotNet", "CharacterArtDotNet\CharacterArtDotNet.csproj", "{EF1B9192-88E4-4426-94F6-37DDC470B298}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF1B9192-88E4-4426-94F6-37DDC470B298}.Debug|x86.ActiveCfg = Debug|x86
+		{EF1B9192-88E4-4426-94F6-37DDC470B298}.Debug|x86.Build.0 = Debug|x86
+		{EF1B9192-88E4-4426-94F6-37DDC470B298}.Release|x86.ActiveCfg = Release|x86
+		{EF1B9192-88E4-4426-94F6-37DDC470B298}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
