@@ -22,6 +22,26 @@ namespace CharacterArtDotNet
             this.path = path;
 	    }
 
+        public void Dispose()
+        {
+            if (originImage != null)
+            {
+                originImage.Dispose();
+            }
+            int x, y;
+            for (x = 0; x < sizeX; x++)
+            {
+                for (y = 0; y < sizeY; y++)
+                {
+                    if (tiles[x, y] != null)
+                    {
+                        tiles[x, y].Dispose();
+                        tiles[x, y] = null;
+                    }
+                }
+            }
+        }
+
         public void load()
         {
             load(path, tileLength);
@@ -176,6 +196,7 @@ namespace CharacterArtDotNet
                     break;
             }
             image.Save(path, format);
+            image.Dispose();
         }
 
 	    public void saveSplitedImages(string basePath)

@@ -143,5 +143,98 @@ namespace CharacterArtDotNet
                 }
             }
         }
+
+        private void buttonBatch_Click(object sender, EventArgs e)
+        {
+            //打开
+            string openDir = "";
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            openDir = folderBrowserDialog.SelectedPath;
+            string[] fileList = Directory.GetFiles(openDir);
+            int w=0, h=0;
+            string errorInfo = "";
+            foreach (string fileName in fileList)
+            {
+                try
+                {
+                    Bitmap img = (Bitmap)Image.FromFile(fileName);
+                    if (w <= 0 && h <= 0)
+                    {
+                        w = img.Width;
+                        h = img.Height;
+                    }
+                    else
+                    {
+                        if (w != img.Width || h != img.Height)
+                        {
+                            errorInfo = "图片尺寸不一致！";
+                            break;
+                        }
+                    }
+                }
+                catch (OutOfMemoryException ex)
+                {
+                    errorInfo = "读取到文件格式错误！";
+                }
+            }
+            if (errorInfo != "")
+            {
+                return;
+            }
+            if (textBoxOutputText.Text.Length <= 0)
+            {
+                MessageBox.Show("输出字符串为空！","错误");
+                return;
+            }
+            if (numericUpDown1.Value < 0)
+            {
+                return;
+            }
+            int tileLenght = 0;
+            if (numericUpDownTileLength.Value<0)
+            {
+                return;
+            }
+            else
+            {
+                tileLenght = (int) numericUpDownTileLength.Value;
+            }
+            int interval = 0;
+            interval = (int)numericUpDown1.Value;
+            Color bg = Color.Empty;
+            if (pictureBoxBGColor.Image == null)
+            {
+                bg = pictureBoxBGColor.BackColor;
+            }
+            //保存
+            string saveDir = "";
+            if (folderBrowserDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            saveDir = folderBrowserDialog.SelectedPath;
+            ImageContainer _ic = null;
+            foreach (string filePath in fileList)
+            {
+                int index = filePath.LastIndexOf('\\');
+                string fileName = filePath.Substring(index+1);
+                _ic = new ImageContainer(filePath, tileLenght);
+                _ic.load();
+                _ic.split();
+                _ic.saveImage(saveDir + "\\" + fileName+".png", 
+                    "png", 
+                    textBoxOutputText.Text, 
+                    font, 
+                    interval, 
+                    bg
+                );
+                _ic.Dispose();
+                _ic = null;
+                //GC.Collect();
+            }
+        }
     }
 }

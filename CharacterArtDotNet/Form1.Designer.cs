@@ -176,13 +176,13 @@
             // 
             // buttonBatch
             // 
-            this.buttonBatch.Enabled = false;
             this.buttonBatch.Location = new System.Drawing.Point(195, 186);
             this.buttonBatch.Name = "buttonBatch";
             this.buttonBatch.Size = new System.Drawing.Size(75, 23);
             this.buttonBatch.TabIndex = 12;
             this.buttonBatch.Text = "批量处理";
             this.buttonBatch.UseVisualStyleBackColor = true;
+            this.buttonBatch.Click += new System.EventHandler(this.buttonBatch_Click);
             // 
             // textBoxOutputText
             // 
